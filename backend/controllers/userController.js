@@ -32,7 +32,24 @@ export const deleteUser = async (req, res) => {
         await User.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "User successfully deleted"});
     } catch (error) {
-        console.error("Error in delete user", error.message);
+        console.error("Error in deleting user", error.message);
         res.status(500).json({ success: false, message: "(Server Error) in deleting a user"});
+    }
+}
+
+export const updateUser = async (req, res) => {
+    const { id, } = req.params;
+    const user = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(404).json({ success: false, message: "User not found"})
+    }
+
+    try {
+        await User.findByIdAndUpdate(id, user, { new: true });
+        res.status(200).json({ success: true, message: "User successfully updated"});
+    } catch (error) {
+        console.error("Error in updating user", error.message);
+        res.status(500).json({ success: false, message: "(Server Error) in updating a user"});
     }
 }
