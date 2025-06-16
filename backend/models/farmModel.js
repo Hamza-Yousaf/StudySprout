@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const farmSchema = new mongoose.Schema({
+export const farmSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: True
+        required: true
     },
 }, {
     timestamps: true

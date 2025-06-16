@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { farmSchema } from "./farmModel.js";
+// import { farmSchema } from "./farmModel.js";
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
-    farm: farmSchema,
+    // farm: farmSchema,
 }, {
     timestamps: true
 })
