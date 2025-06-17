@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@layer theme {
+  :root {
+    --sproutGreen: #6DBE45;
+    --sunflowerYellow: #F9D64D;
+    --oliveLeaf: #A4C77C;
+    --soilBrown: #7B5E57;
+    --skyBlue: #AEE3F5;
+    --offWhite: #FAFAF5;
+    --darkText: #2F2F2F;
+    --lightText: #777777;
+    --backgroundGreen: #3CB371;
+  }
+}
