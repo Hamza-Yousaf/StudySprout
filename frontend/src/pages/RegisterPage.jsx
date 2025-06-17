@@ -4,7 +4,15 @@ const RegisterPage = () => {
   return (
     <div className='relative w-screen h-screen flex items-center justify-center'>
       <div className="absolute top-0 left-0 bg-[var(--backgroundGreen)] w-full h-1/2 z-0"></div>
-      <div className="w-1/3 h-4/5 bg-[var(--offWhite)] m-auto shadow-md z-1"></div>
+      <div className="w-1/3 min-w-[200px] h-4/5 bg-[var(--offWhite)] m-auto shadow-md z-1 p-8">
+        <h1 className='text-2xl text-[var(--darkText)]'>Sign Up to <span className='font-bold'>StudySprout</span></h1>
+        <form action="">
+          <input type="text" placeholder='Username' className='border-b w-full mt-8'/>
+          <input type="email" placeholder='Email' className='border-b w-full mt-8'/>
+          <input type="password" placeholder='Password' className='border-b w-full mt-8'/>
+          <input type="submit" className='mt-8 text-center bg-[var(--backgroundGreen)] text-[var(--darkText)] text-xl p-2 shadow-sm font-bold cursor-pointer w-full'/>
+        </form>
+      </div>
     </div>
   )
 }
