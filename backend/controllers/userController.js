@@ -6,6 +6,13 @@ export const createUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const user = req.body;
     const password = user.password;
+    const email = user.email;
+
+    const alreadyExists = await User.findOne({email}).lean();
+
+    if(alreadyExists) {
+        return res.status(409).json({ success: false, message: "Email is already linked to an account"});
+    }
 
     const newUser = new User(user);
 
@@ -16,7 +23,7 @@ export const createUser = async (req, res) => {
         await newUser.save();
         res.status(201).json({ success: true, message: "Successfully created a new user"});
     } catch (error) {
-        console.error("Error in creating a user", error.message);
+        console.error("Error in creating a user", error);
         res.status(500).json({ success: false, message: "(Server Error) in creating a user"});
     }
 };
