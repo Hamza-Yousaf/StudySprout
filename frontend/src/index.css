@@ -2,16 +2,16 @@
 
 @layer theme {
   :root {
-    --sproutGreen: #6DBE45;
-    --sunflowerYellow: #F9D64D;
-    --oliveLeaf: #A4C77C;
-    --soilBrown: #7B5E57;
-    --skyBlue: #AEE3F5;
-    --offWhite: #FAFAF5;
-    --darkText: #2F2F2F;
+    --sproutGreen: #6dbe45;
+    --sunflowerYellow: #f9d64d;
+    --oliveLeaf: #a4c77c;
+    --soilBrown: #7b5e57;
+    --skyBlue: #aee3f5;
+    --offWhite: #fafaf5;
+    --darkText: #2f2f2f;
     --lightText: #777777;
-    --backgroundGreen: #3CB371;
-    --powerBlue: #0047AB;
+    --backgroundGreen: #3cb371;
+    --powerBlue: #0047ab;
     --backgroundDarkGreen: #339860;
   }
 }
