@@ -4,11 +4,14 @@ import {
   deleteUser,
   updateUser,
   getUser,
+  loginUser,
 } from "../controllers/userController.js";
 
 const router = express.Router();
 
 router.post("/", createUser);
+
+router.post("/login", loginUser);
 
 router.delete("/:id", deleteUser);
 

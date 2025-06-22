@@ -1,6 +1,47 @@
 import React from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!userDetails.username || !userDetails.password) {
+      console.log("Please fill in all fields");
+      toast("Please fill in all fields");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userDetails),
+      });
+
+      if (res.status == 500) {
+        toast("This user does nto exist");
+      } else if (res.status == 409) {
+        toast("Incorrect password");
+      } else if (res.status == 500) {
+        toast("Server error, please try again");
+      } else {
+        toast("Welcome, successfully logged in");
+      }
+    } catch (error) {
+      console.error(error);
+      toast("Something went wrong, please try again");
+    }
+  };
+
   return (
     <div className="relative w-screen h-screen flex items-center justify-center">
       <div className="absolute top-0 left-0 bg-[var(--backgroundGreen)] w-full h-1/2 z-0"></div>
@@ -9,16 +50,24 @@ const LoginPage = () => {
           Login to <span className="font-bold">StudySprout</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleLogin}>
           <input
             type="text"
             placeholder="Username"
             className="border-b w-full mt-8 focus:outline-none focus:text-[var(--darkText)]"
+            value={userDetails.username}
+            onChange={(e) => {
+              setUserDetails((prev) => ({ ...prev, username: e.target.value }));
+            }}
           />
           <input
             type="password"
             placeholder="Password"
             className="border-b w-full mt-8 focus:outline-none"
+            value={userDetails.password}
+            onChange={(e) => {
+              setUserDetails((prev) => ({ ...prev, password: e.target.value }));
+            }}
           />
           <input
             type="submit"

@@ -37,18 +37,48 @@ export const createUser = async (req, res) => {
 
     const token = createToken(newUser._id);
 
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: "Successfully created a new user",
-        token: token,
-      });
+    res.status(201).json({
+      success: true,
+      message: "Successfully created a new user",
+      token: token,
+    });
   } catch (error) {
     console.error("Error in creating a user", error);
     res
       .status(500)
       .json({ success: false, message: "(Server Error) in creating a user" });
+  }
+};
+
+export const loginUser = async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await User.findOne({ username }).lean();
+
+  if (!user) {
+    return res
+      .status(500)
+      .json({ success: false, message: "User does not exist" });
+  }
+
+  try {
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      return res
+        .status(409)
+        .json({ success: false, message: "Incorrect password" });
+    }
+
+    const token = createToken(user._id);
+
+    res
+      .status(200)
+      .json({ success: true, message: "Successfully logged in", token: token });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server error when trying to login" });
   }
 };
 
