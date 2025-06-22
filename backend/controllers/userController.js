@@ -1,6 +1,16 @@
 import mongoose from "mongoose";
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+
+dotenv.config();
+
+const secret = process.env.SECRET;
+
+const createToken = (_id) => {
+  return jwt.sign({ _id: _id }, secret, { expiresIn: "7d" });
+};
 
 export const createUser = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
@@ -11,12 +21,10 @@ export const createUser = async (req, res) => {
   const alreadyExists = await User.findOne({ email }).lean();
 
   if (alreadyExists) {
-    return res
-      .status(409)
-      .json({
-        success: false,
-        message: "Email is already linked to an account",
-      });
+    return res.status(409).json({
+      success: false,
+      message: "Email is already linked to an account",
+    });
   }
 
   const newUser = new User(user);
@@ -26,9 +34,16 @@ export const createUser = async (req, res) => {
     newUser.password = hashedPassword;
 
     await newUser.save();
+
+    const token = createToken(newUser._id);
+
     res
       .status(201)
-      .json({ success: true, message: "Successfully created a new user" });
+      .json({
+        success: true,
+        message: "Successfully created a new user",
+        token: token,
+      });
   } catch (error) {
     console.error("Error in creating a user", error);
     res
