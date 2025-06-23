@@ -4,24 +4,27 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import { Slide, ToastContainer, Zoom } from "react-toastify";
+import { AuthContextProvider } from "./context/AuthContext.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Slide}
-      />
-    </BrowserRouter>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <App />
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition={Slide}
+        />
+      </BrowserRouter>
+    </AuthContextProvider>
   </StrictMode>
 );
