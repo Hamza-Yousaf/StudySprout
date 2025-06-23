@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSignup } from "../hooks/useSignup";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -11,8 +12,10 @@ const RegisterPage = () => {
     email: "",
     password: "",
   });
+  const { signup } = useSignup();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const res = await fetch("http://localhost:5000/api/users", {
         method: "POST",
@@ -22,9 +25,12 @@ const RegisterPage = () => {
         body: JSON.stringify(newUser),
       });
 
+      const data = await res.json();
+
       if (res.ok) {
         toast("Account has been successfully created");
-        navigate("/dashboard");
+        signup(data);
+        // navigate("/dashboard");
       } else {
         toast("Email is already linked to an account");
         return;

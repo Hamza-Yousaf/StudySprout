@@ -38,8 +38,7 @@ export const createUser = async (req, res) => {
     const token = createToken(newUser._id);
 
     res.status(201).json({
-      success: true,
-      message: "Successfully created a new user",
+      user: newUser,
       token: token,
     });
   } catch (error) {
@@ -51,9 +50,9 @@ export const createUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await User.findOne({ username }).lean();
+  const user = await User.findOne({ email }).lean();
 
   if (!user) {
     return res
@@ -72,9 +71,7 @@ export const loginUser = async (req, res) => {
 
     const token = createToken(user._id);
 
-    res
-      .status(200)
-      .json({ success: true, message: "Successfully logged in", token: token });
+    res.status(200).json({ user: user, token: token });
   } catch (error) {
     res
       .status(500)

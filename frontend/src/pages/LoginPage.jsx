@@ -2,17 +2,19 @@ import React from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSignup } from "../hooks/useSignup";
 
 const LoginPage = () => {
   const [userDetails, setUserDetails] = useState({
-    username: "",
+    email: "",
     password: "",
   });
+  const { signup } = useSignup();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!userDetails.username || !userDetails.password) {
+    if (!userDetails.email || !userDetails.password) {
       console.log("Please fill in all fields");
       toast("Please fill in all fields");
       return;
@@ -27,6 +29,8 @@ const LoginPage = () => {
         body: JSON.stringify(userDetails),
       });
 
+      const data = await res.json();
+
       if (res.status == 500) {
         toast("This user does nto exist");
       } else if (res.status == 409) {
@@ -35,6 +39,7 @@ const LoginPage = () => {
         toast("Server error, please try again");
       } else {
         toast("Welcome, successfully logged in");
+        await signup(data);
       }
     } catch (error) {
       console.error(error);
@@ -53,11 +58,11 @@ const LoginPage = () => {
         <form onSubmit={handleLogin}>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Email"
             className="border-b w-full mt-8 focus:outline-none focus:text-[var(--darkText)]"
-            value={userDetails.username}
+            value={userDetails.email}
             onChange={(e) => {
-              setUserDetails((prev) => ({ ...prev, username: e.target.value }));
+              setUserDetails((prev) => ({ ...prev, email: e.target.value }));
             }}
           />
           <input
