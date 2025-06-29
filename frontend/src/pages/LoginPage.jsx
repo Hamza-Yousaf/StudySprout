@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSignup } from "../hooks/useSignup";
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const [userDetails, setUserDetails] = useState({
@@ -10,6 +11,8 @@ const LoginPage = () => {
     password: "",
   });
   const { signup } = useSignup();
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -39,6 +42,7 @@ const LoginPage = () => {
         toast("Server error, please try again");
       } else {
         toast("Welcome, successfully logged in");
+        navigate("/dashboard");
         await signup(data);
       }
     } catch (error) {
