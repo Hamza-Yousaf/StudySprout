@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSignup } from "../hooks/useSignup";
+import { useLogin } from "../hooks/useLogin";
 import { useNavigate } from "react-router";
 
 const LoginPage = () => {
@@ -10,7 +10,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const { signup } = useSignup();
+  const { login } = useLogin();
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const LoginPage = () => {
       } else {
         toast("Welcome, successfully logged in");
         navigate("/dashboard");
-        await signup(data);
+        await login(data);
       }
     } catch (error) {
       console.error(error);
