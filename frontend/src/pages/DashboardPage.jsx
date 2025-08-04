@@ -1,10 +1,17 @@
 import React from "react";
 import Logout from "../components/Logout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const DashboardPage = () => {
+  const { user } = useAuthContext();
   return (
     <div>
-      <Logout />
+      {user && (
+        <div>
+          <Logout />
+          <span>{user.email}</span>
+        </div>
+      )}
     </div>
   );
 };
