@@ -30,7 +30,7 @@ const RegisterPage = () => {
       if (res.ok) {
         toast("Account has been successfully created");
         signup(data);
-        // navigate("/dashboard");
+        navigate("/dashboard");
       } else {
         toast("Email is already linked to an account");
         return;

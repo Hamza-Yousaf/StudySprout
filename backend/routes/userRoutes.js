@@ -7,11 +7,15 @@ import {
   loginUser,
 } from "../controllers/userController.js";
 
+import requireAuth from "../middleware/requireAuth.js";
+
 const router = express.Router();
 
 router.post("/", createUser);
 
 router.post("/login", loginUser);
+
+router.use(requireAuth);
 
 router.delete("/:id", deleteUser);
 
