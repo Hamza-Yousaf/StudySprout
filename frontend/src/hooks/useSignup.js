@@ -9,6 +9,7 @@ export const useSignup = () => {
 
     const publicUser = {
       email: user.email,
+      username: user.username,
       token: token,
     };
 

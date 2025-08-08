@@ -8,6 +8,7 @@ export const useLogin = () => {
 
     const publicUser = {
       email: user.email,
+      username: user.username,
       token: token,
     };
 
