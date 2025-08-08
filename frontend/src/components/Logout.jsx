@@ -10,7 +10,12 @@ const Logout = () => {
 
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      <button
+        onClick={handleLogout}
+        className="hover:text-[var(--offWhite)] transition-[2]"
+      >
+        Logout
+      </button>
     </div>
   );
 };
