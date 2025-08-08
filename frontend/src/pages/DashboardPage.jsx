@@ -20,8 +20,20 @@ const DashboardPage = () => {
 
   return (
     <div>
-      <Logout />
-      <span>{user.email}</span>
+      {/* <Logout /> */}
+      <div className="max-w-1/7 bg-black h-screen p-4 flex flex-col justify-left ">
+        <h1 className="text-[var(--backgroundGreen)] text-2xl font-bold mx-auto mt-2">
+          StudySprout
+        </h1>
+        <div className="mt-8 space-y-2 flex flex-col h-screen">
+          <h4 className="text-white">Dashboard</h4>
+          <h4 className="text-[var(--lightText)]">Farm</h4>
+          <h4 className="text-[var(--lightText)]">Courses</h4>
+          <h4 className="text-[var(--lightText)]">Timer</h4>
+          <h4 className="text-[var(--lightText)]">Goals</h4>
+          <h4 className="text-[var(--lightText)] mt-auto">Log Out</h4>
+        </div>
+      </div>
     </div>
   );
 };
