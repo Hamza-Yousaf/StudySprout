@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 import TotalStudyTime from "../components/TotalStudyTime";
+import CourseCards from "../components/CourseCards";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -30,9 +31,12 @@ const DashboardPage = () => {
   console.log(highlight);
 
   return (
-    <div className="flex">
+    <div className="flex bg-[var(--offWhite)]">
       <Sidebar highlight={highlight} username={user.username} />
-      <TotalStudyTime className="mx-auto mt-6 font-bold text-xl" />
+      <div className="flex flex-col p-4 w-full h-screen">
+        <TotalStudyTime />
+        <CourseCards />
+      </div>
     </div>
   );
 };
