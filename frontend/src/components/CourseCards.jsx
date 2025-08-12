@@ -17,6 +17,7 @@ const CourseCards = ({ user }) => {
 
         const response = await res.json();
         setCourses(response.data);
+        console.log(response);
       } catch (error) {
         console.log("error in fetching courses");
       }
@@ -42,17 +43,22 @@ const CourseCards = ({ user }) => {
       </div>
 
       {/* Course Row */}
-      {courses.length > 0 ? (
-        <div className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition">
-          <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
-            {courses[0].title}
-          </span>
-          <span className="font-semibold text-[var(--backgroundGreen)]">
-            {courses[0].hoursStudied}
-          </span>
-        </div>
+      {courses.length === 0 ? (
+        <p>No courses yet...</p>
       ) : (
-        <p className="text-gray-500">Loading...</p>
+        courses.map((course) => (
+          <div
+            key={course._id}
+            className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition"
+          >
+            <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
+              {course.title}
+            </span>
+            <span className="font-semibold text-[var(--backgroundGreen)]">
+              {course.hoursStudied}
+            </span>
+          </div>
+        ))
       )}
     </div>
   );
