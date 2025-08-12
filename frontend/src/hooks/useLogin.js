@@ -7,6 +7,7 @@ export const useLogin = () => {
     const { user, token } = data;
 
     const publicUser = {
+      id: user._id,
       email: user.email,
       username: user.username,
       token: token,

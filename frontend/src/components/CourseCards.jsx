@@ -1,6 +1,30 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const CourseCards = () => {
+const CourseCards = ({ user }) => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    if (!user.id) {
+      return;
+    }
+
+    const fetchCourses = async () => {
+      try {
+        console.log("inside function");
+        const res = await fetch(`http://localhost:5000/api/courses/${user.id}`);
+
+        const response = await res.json();
+        setCourses(response.data);
+      } catch (error) {
+        console.log("error in fetching courses");
+      }
+    };
+
+    fetchCourses();
+  }, [user]);
+
   return (
     <div className="w-1/3 h-full shadow-lg rounded-2xl bg-white p-6">
       {/* Card Title */}
@@ -18,33 +42,18 @@ const CourseCards = () => {
       </div>
 
       {/* Course Row */}
-      <div className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition">
-        <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
-          Calculus
-        </span>
-        <span className="font-semibold text-[var(--backgroundGreen)]">47</span>
-      </div>
-
-      <div className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition">
-        <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
-          Physics
-        </span>
-        <span className="font-semibold text-[var(--backgroundGreen)]">12</span>
-      </div>
-
-      <div className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition">
-        <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
-          English
-        </span>
-        <span className="font-semibold text-[var(--backgroundGreen)]">54</span>
-      </div>
-
-      <div className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition">
-        <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
-          Business
-        </span>
-        <span className="font-semibold text-[var(--backgroundGreen)]">3</span>
-      </div>
+      {courses.length > 0 ? (
+        <div className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+          <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
+            {courses[0].title}
+          </span>
+          <span className="font-semibold text-[var(--backgroundGreen)]">
+            {courses[0].hoursStudied}
+          </span>
+        </div>
+      ) : (
+        <p className="text-gray-500">Loading...</p>
+      )}
     </div>
   );
 };

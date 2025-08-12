@@ -29,13 +29,14 @@ const DashboardPage = () => {
   }
 
   console.log(highlight);
+  console.log(user);
 
   return (
     <div className="flex bg-[var(--offWhite)]">
       <Sidebar highlight={highlight} username={user.username} />
       <div className="flex flex-col p-4 w-full h-screen">
         <TotalStudyTime />
-        <CourseCards />
+        <CourseCards user={user} />
       </div>
     </div>
   );
