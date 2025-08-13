@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 import TotalStudyTime from "../components/TotalStudyTime";
 import CourseCards from "../components/CourseCards";
+import GoalsCard from "../components/GoalsCard";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -34,9 +35,12 @@ const DashboardPage = () => {
   return (
     <div className="flex bg-[var(--offWhite)]">
       <Sidebar highlight={highlight} username={user.username} />
-      <div className="flex flex-col p-4 w-full h-screen">
+      <div className="flex flex-col p-4 w-full h-screen ">
         <TotalStudyTime />
-        <CourseCards user={user} />
+        <div className="flex h-full">
+          <CourseCards user={user} />
+          <GoalsCard />
+        </div>
       </div>
     </div>
   );
