@@ -39,7 +39,7 @@ const DashboardPage = () => {
         <TotalStudyTime />
         <div className="flex h-full">
           <CourseCards user={user} />
-          <GoalsCard />
+          <GoalsCard user={user} />
         </div>
       </div>
     </div>
