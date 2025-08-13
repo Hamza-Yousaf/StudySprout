@@ -2,6 +2,10 @@ import mongoose, { mongo } from "mongoose";
 
 const goalSchema = mongoose.Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

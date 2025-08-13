@@ -33,7 +33,7 @@ const GoalsCard = ({ user }) => {
 
       <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-4">
         <h2 className="font-semibold text-lg text-[var(--powerBlue)]">Goal</h2>
-        <h2 className="font-semibold text-lg text-[var(--backgroundGreen)]">
+        <h2 className="font-semibold text-lg text-[var(--sunflowerYellow)]">
           Status
         </h2>
       </div>
@@ -49,8 +49,12 @@ const GoalsCard = ({ user }) => {
             <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
               {goal.title}
             </span>
-            <span className="font-semibold text-[var(--backgroundGreen)]">
-              {goal.status}
+            <span className="font-semibold">
+              {goal.status ? (
+                <p className="text-[var(--backgroundGreen)]">Completed</p>
+              ) : (
+                <p className="text-red-700">Incomplete</p>
+              )}
             </span>
           </div>
         ))
