@@ -27,7 +27,7 @@ const CourseCards = ({ user }) => {
   }, [user]);
 
   return (
-    <div className="w-1/3 h-full shadow-lg rounded-2xl bg-white p-6">
+    <div className="w-1/3 h-full mx-4 shadow-lg rounded-2xl bg-white p-6">
       {/* Card Title */}
       <h1 className="font-bold text-2xl mb-3">Courses</h1>
       <div className="border-b border-gray-300 mb-6"></div>
