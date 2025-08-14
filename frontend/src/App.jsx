@@ -9,7 +9,6 @@ import { useEffect } from "react";
 
 const App = () => {
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
 
   const paths = ["/register", "/login", "/dashboard"];

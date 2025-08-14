@@ -31,17 +31,14 @@ const DashboardPage = () => {
     highlight = true;
   }
 
-  console.log(highlight);
-  console.log(user);
-
   return (
     <div className="flex bg-[var(--offWhite)]">
       <Sidebar highlight={highlight} username={user.username} />
       <div className="flex flex-col p-4 w-full h-screen ">
         <TotalStudyTime />
         <div className="grid grid-cols-3 grid-rows-2 gap-4 h-full m-2">
-          <CourseCards user={user} />
-          <GoalsCard user={user} />
+          <CourseCards />
+          <GoalsCard />
           <ContributionChart />
           <FarmStats />
         </div>

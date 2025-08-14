@@ -13,7 +13,6 @@ const FarmStats = () => {
 
     const fetchUser = async () => {
       try {
-        console.log("inside function");
         const res = await fetch(`http://localhost:5000/api/users/${user.id}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -22,7 +21,6 @@ const FarmStats = () => {
 
         const response = await res.json();
         setDetails(response.data);
-        console.log(response);
       } catch (error) {
         console.log("error in fetching user");
       }

@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
-const CourseCards = ({ user }) => {
+const CourseCards = () => {
   const [courses, setCourses] = useState([]);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (!user.id) {
@@ -12,12 +14,10 @@ const CourseCards = ({ user }) => {
 
     const fetchCourses = async () => {
       try {
-        console.log("inside function");
         const res = await fetch(`http://localhost:5000/api/courses/${user.id}`);
 
         const response = await res.json();
         setCourses(response.data);
-        console.log(response);
       } catch (error) {
         console.log("error in fetching courses");
       }

@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
-const GoalsCard = ({ user }) => {
+const GoalsCard = () => {
   const [goals, setGoals] = useState([]);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (!user.id) {
@@ -12,12 +14,10 @@ const GoalsCard = ({ user }) => {
 
     const fetchGoals = async () => {
       try {
-        console.log("inside function");
         const res = await fetch(`http://localhost:5000/api/goals/${user.id}`);
 
         const response = await res.json();
         setGoals(response.data);
-        console.log(response);
       } catch (error) {
         console.log("error in fetching goals");
       }
