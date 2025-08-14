@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import TotalStudyTime from "../components/TotalStudyTime";
 import CourseCards from "../components/CourseCards";
 import GoalsCard from "../components/GoalsCard";
+import ContributionChart from "../components/ContributionChart";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const DashboardPage = () => {
         <div className="flex h-full">
           <CourseCards user={user} />
           <GoalsCard user={user} />
+          <ContributionChart />
         </div>
       </div>
     </div>
