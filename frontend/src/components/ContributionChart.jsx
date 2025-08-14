@@ -31,6 +31,10 @@ const ContributionChart = () => {
           dark: ["#2e294e", "#4a3f72", "#7f6ca8", "#b497d6", "#e0b0ff"],
         }}
       />
+      <h1 className="font-semibold mt-12 text-3xl">
+        You've studied across{" "}
+        <span className="text-[#e0b0ff] font-bold">{data.length - 2} days</span>
+      </h1>
     </div>
   );
 };
