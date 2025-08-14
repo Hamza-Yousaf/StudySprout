@@ -7,6 +7,7 @@ import TotalStudyTime from "../components/TotalStudyTime";
 import CourseCards from "../components/CourseCards";
 import GoalsCard from "../components/GoalsCard";
 import ContributionChart from "../components/ContributionChart";
+import FarmStats from "../components/FarmStats";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -38,10 +39,11 @@ const DashboardPage = () => {
       <Sidebar highlight={highlight} username={user.username} />
       <div className="flex flex-col p-4 w-full h-screen ">
         <TotalStudyTime />
-        <div className="flex h-full">
+        <div className="grid grid-cols-3 grid-rows-2 gap-4 h-full m-2">
           <CourseCards user={user} />
           <GoalsCard user={user} />
           <ContributionChart />
+          <FarmStats />
         </div>
       </div>
     </div>
