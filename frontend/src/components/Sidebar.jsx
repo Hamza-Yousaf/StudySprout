@@ -1,7 +1,18 @@
 import React from "react";
 import Logout from "./Logout";
+import { useNavigate } from "react-router";
 
-const Sidebar = ({ highlight, username }) => {
+const Sidebar = ({ activePath, username }) => {
+  const navigate = useNavigate();
+
+  const navItems = [
+    { name: "Dashboard", path: "/dashboard" },
+    { name: "Courses", path: "/courses" },
+    { name: "Farm", path: "/farm" },
+    { name: "Timer", path: "/timer" },
+    { name: "Goals", path: "/goals" },
+  ];
+
   return (
     <div className="flex">
       {/* <Logout /> */}
@@ -9,26 +20,21 @@ const Sidebar = ({ highlight, username }) => {
         <h1 className="text-[var(--backgroundGreen)] text-2xl font-bold mx-auto mt-2">
           StudySprout
         </h1>
+
         <div className="mt-8 space-y-2 flex flex-grow flex-col">
-          <h4
-            className={`${
-              highlight ? "text-[var(--offWhite)]" : "text-[var(--lightText)]"
-            }`}
-          >
-            Dashboard
-          </h4>
-          <h4 className="text-[var(--lightText)] hover:text-[var(--offWhite)] transition-[2]">
-            Farm
-          </h4>
-          <h4 className="text-[var(--lightText)] hover:text-[var(--offWhite)] transition-[2]">
-            Courses
-          </h4>
-          <h4 className="text-[var(--lightText)] hover:text-[var(--offWhite)] transition-[2]">
-            Timer
-          </h4>
-          <h4 className="text-[var(--lightText)] hover:text-[var(--offWhite)] transition-[2]">
-            Goals
-          </h4>
+          {navItems.map((item) => (
+            <h4
+              key={item.path}
+              onClick={() => navigate(item.path)}
+              className={`cursor-pointer hover:text-[var(--offWhite)] ${
+                activePath === item.path
+                  ? "text-[var(--offWhite)]"
+                  : "text-[var(--lightText)]"
+              }`}
+            >
+              {item.name}
+            </h4>
+          ))}
 
           <div className="mt-auto">
             <h4 className="text-[var(--backgroundGreen)]">{username}</h4>
