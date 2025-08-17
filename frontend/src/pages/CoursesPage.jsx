@@ -11,7 +11,7 @@ const CoursesPage = () => {
   const { user } = useAuthContext();
   const location = useLocation();
 
-  var highlight = false;
+  var activePath;
 
   useEffect(() => {
     if (!user) {
@@ -23,12 +23,10 @@ const CoursesPage = () => {
     return null;
   }
 
-  if (location.pathname == "/dashboard") {
-    highlight = true;
-  }
+  activePath = location.pathname;
   return (
     <div className="flex bg-[var(--offWhite)]">
-      <Sidebar highlight={highlight} username={user.username} />
+      <Sidebar activePath={activePath} username={user.username} />
       <div className="flex flex-col p-4 w-full h-screen ">
         <h1>Courses</h1>
       </div>

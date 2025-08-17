@@ -12,7 +12,15 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const paths = ["/register", "/login", "/dashboard", "/courses"];
+  const paths = [
+    "/register",
+    "/login",
+    "/dashboard",
+    "/courses",
+    "/farm",
+    "/timer",
+    "/goals",
+  ];
 
   useEffect(() => {
     if (!paths.includes(location.pathname)) {
