@@ -55,7 +55,7 @@ const CourseCards = () => {
               {course.title}
             </span>
             <span className="font-semibold text-[var(--backgroundGreen)]">
-              {course.hoursStudied}
+              {course.hoursStudied || 0}
             </span>
           </div>
         ))
