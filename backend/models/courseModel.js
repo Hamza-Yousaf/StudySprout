@@ -12,6 +12,14 @@ export const courseSchema = new mongoose.Schema(
     },
     hoursStudied: {
       type: Number,
+      required: false,
+    },
+    deadline: {
+      type: Date,
+      required: true,
+    },
+    priority: {
+      type: String,
       required: true,
     },
   },
