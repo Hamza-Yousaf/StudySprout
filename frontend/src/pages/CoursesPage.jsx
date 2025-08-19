@@ -7,11 +7,6 @@ import { useEffect } from "react";
 
 const CoursesPage = () => {
   const navigate = useNavigate();
-  const [courseDate, setCourseDate] = useState({
-    title: "",
-    priority: "",
-    deadline: "",
-  });
 
   const { user } = useAuthContext();
   const location = useLocation();
