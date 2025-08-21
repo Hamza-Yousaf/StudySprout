@@ -50,13 +50,13 @@ const CoursesPage = () => {
   return (
     <div className="flex bg-[var(--offWhite)]">
       <Sidebar activePath={activePath} username={user.username} />
-      <div className="flex flex-col p-4 w-full h-screen ">
-        <div className="w-3/4 h-3/4 bg-black shadow-lg rounded-2xl bg-white p-6 m-auto">
+      <div className="flex flex-col p-4 w-full  m-auto">
+        <div className="w-1/2 h-1/2 bg-black shadow-lg rounded-2xl bg-white p-6 m-auto">
           <h1 className="font-bold text-2xl mb-3">Add a course</h1>
           <div className="border-b border-gray-300 mb-6"></div>
 
           <form
-            className="w-1/2 bg-[var(--skyBlue)] shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            className="w-full bg-[var(--skyBlue)] shadow-md rounded px-8 pt-6 pb-8 mb-8"
             onSubmit={handleAddCourse}
           >
             <div className="flex justify-between">
@@ -115,6 +115,11 @@ const CoursesPage = () => {
               Add
             </button>
           </form>
+          <div className="flex justify-center">
+            <button className="text-3xl text-[var(--powerBlue)] font-semibold  cursor-pointer underline">
+              View All Courses
+            </button>
+          </div>
         </div>
       </div>
     </div>
