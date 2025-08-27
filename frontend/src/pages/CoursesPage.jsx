@@ -13,6 +13,7 @@ const CoursesPage = () => {
   const location = useLocation();
 
   var activePath;
+  const [buttonPressed, setButtonPressed] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -24,15 +25,26 @@ const CoursesPage = () => {
     return null;
   }
 
+  const changeDisplay = () => {
+    setButtonPressed(!buttonPressed);
+  };
+
   activePath = location.pathname;
   return (
     <div className="flex bg-[var(--offWhite)]">
       <Sidebar activePath={activePath} username={user.username} />
       <div className="flex flex-col w-full h-full m-auto">
-        <AddCourse />
-        <button className="text-3xl text-[var(--powerBlue)] font-semibold cursor-pointer underline">
-          View All Courses
-        </button>
+        <AddCourse hidden={buttonPressed} />
+        {!buttonPressed ? (
+          <button
+            className="text-3xl text-[var(--powerBlue)] font-semibold cursor-pointer underline"
+            onClick={changeDisplay}
+          >
+            View All Courses
+          </button>
+        ) : (
+          <button onClick={changeDisplay}>Add course</button>
+        )}
       </div>
     </div>
   );
