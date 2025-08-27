@@ -37,6 +37,7 @@ const CourseCards = () => {
         <h2 className="font-semibold text-lg text-[var(--powerBlue)]">
           Course
         </h2>
+        <h2 className="font-semibold text-lg text-black]">Priority</h2>
         <h2 className="font-semibold text-lg text-[var(--backgroundGreen)]">
           Hours Studied
         </h2>
@@ -51,10 +52,13 @@ const CourseCards = () => {
             key={course._id}
             className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition"
           >
-            <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
+            <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)] w-[100px]">
               {course.title}
             </span>
-            <span className="font-semibold text-[var(--backgroundGreen)]">
+            <span className="bg-black py-1 px-3 rounded-xl font-semibold text-white w-[80px]">
+              {course.priority}
+            </span>
+            <span className="font-semibold text-[var(--backgroundGreen)] w-[100px]">
               {course.hoursStudied || 0}
             </span>
           </div>

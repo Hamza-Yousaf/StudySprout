@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 import { useEffect } from "react";
 import AddCourse from "../components/AddCourse";
+import CourseCards from "../components/CourseCards";
 
 const CoursesPage = () => {
   const navigate = useNavigate();
@@ -43,7 +44,15 @@ const CoursesPage = () => {
             View All Courses
           </button>
         ) : (
-          <button onClick={changeDisplay}>Add course</button>
+          <div className="m-2 flex flex-col">
+            <CourseCards />
+            <button
+              className="text-3xl text-[var(--powerBlue)] font-semibold cursor-pointer underline mt-2"
+              onClick={changeDisplay}
+            >
+              Add course
+            </button>
+          </div>
         )}
       </div>
     </div>
