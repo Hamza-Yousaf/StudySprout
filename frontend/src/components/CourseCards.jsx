@@ -28,11 +28,9 @@ const CourseCards = () => {
 
   return (
     <div className="w-full row-span-2 shadow-lg rounded-2xl bg-white p-6">
-      {/* Card Title */}
       <h1 className="font-bold text-2xl mb-3">Courses</h1>
       <div className="border-b border-gray-300 mb-6"></div>
 
-      {/* Table Header */}
       <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-4">
         <h2 className="font-semibold text-lg text-[var(--powerBlue)]">
           Course
@@ -43,7 +41,6 @@ const CourseCards = () => {
         </h2>
       </div>
 
-      {/* Course Row */}
       {courses.length === 0 ? (
         <p>No courses yet...</p>
       ) : (

@@ -15,7 +15,6 @@ const Sidebar = ({ activePath, username }) => {
 
   return (
     <div className="flex">
-      {/* <Logout /> */}
       <div className="w-64 bg-black h-screen p-4 flex flex-col">
         <h1 className="text-[var(--backgroundGreen)] text-2xl font-bold mx-auto mt-2">
           StudySprout
