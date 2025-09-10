@@ -36,3 +36,28 @@ export const getCourses = async (req, res) => {
       .json({ success: false, message: "Server error fetching courses" });
   }
 };
+
+export const updateCourse = async (req, res) => {
+  const { id } = req.params;
+  const { time } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ success: false, message: "Course not found" });
+  }
+
+  try {
+    await Course.findByIdAndUpdate(
+      id,
+      { $inc: { hoursStudied: time / 3600 } },
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ success: true, message: "Course successfully updated" });
+  } catch (error) {
+    console.error("Error in updating course", error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "(Server Error) in updating a course" });
+  }
+};

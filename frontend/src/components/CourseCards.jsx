@@ -56,7 +56,7 @@ const CourseCards = () => {
               {course.priority}
             </span>
             <span className="font-semibold text-[var(--backgroundGreen)] w-[100px]">
-              {course.hoursStudied || 0}
+              {Math.floor(course.hoursStudied * 100) / 100 || 0}
             </span>
           </div>
         ))
