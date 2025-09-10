@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const TimerPage = () => {
   const { user } = useAuthContext();
   const [courses, setCourses] = useState([]);
+
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     if (!user?.id) {
@@ -27,6 +32,32 @@ const TimerPage = () => {
     fetchCourses();
   }, [user]);
 
+  const startTimer = () => {
+    if (!isRunning) {
+      setIsRunning(true);
+      intervalRef.current = setInterval(() => {
+        setTime((prev) => prev + 1);
+      }, 1000);
+    }
+  };
+
+  const stopTimer = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current);
+  };
+
+  const resetTimer = () => {
+    stopTimer();
+    setTime(0);
+  };
+
+  const formatTime = (time) => {
+    const hrs = String(Math.floor(time / 3600)).padStart(2, "0");
+    const mins = String(Math.floor((time % 3600) / 60)).padStart(2, "0");
+    const secs = String(time % 60).padStart(2, "0");
+    return `${hrs}:${mins}:${secs}`;
+  };
+
   return (
     <div className="bg-[var(--oliveLeaf)] flex">
       <Sidebar />
@@ -34,15 +65,24 @@ const TimerPage = () => {
         <h1 className="text-4xl font-bold mb-4 underline">Timer</h1>
 
         <div className="flex flex-col items-center">
-          <div className="text-4xl mb-2">00:00:00</div>
+          <div className="text-4xl mb-2">{formatTime(time)}</div>
           <div className="flex space-x-4 text-3xl">
-            <button className="w-auto shadow-sm px-4 py-2 cursor-pointer">
+            <button
+              className="w-auto shadow-sm px-4 py-2 cursor-pointer"
+              onClick={startTimer}
+            >
               Start
             </button>
-            <button className="w-auto shadow-sm px-4 py-2 cursor-pointer">
+            <button
+              className="w-auto shadow-sm px-4 py-2 cursor-pointer"
+              onClick={stopTimer}
+            >
               Stop
             </button>
-            <button className="w-auto shadow-sm px-4 py-2 cursor-pointer">
+            <button
+              className="w-auto shadow-sm px-4 py-2 cursor-pointer"
+              onClick={resetTimer}
+            >
               Reset
             </button>
           </div>
