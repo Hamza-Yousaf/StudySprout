@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const GoalsCard = () => {
+const GoalsCard = ({ selection, title }) => {
   const [goals, setGoals] = useState([]);
   const { user } = useAuthContext();
 
@@ -17,7 +17,13 @@ const GoalsCard = () => {
         const res = await fetch(`http://localhost:5000/api/goals/${user.id}`);
 
         const response = await res.json();
-        setGoals(response.data);
+        if (selection === "all") {
+          setGoals(response.data);
+        } else if (selection === "completed") {
+          setGoals(response.data.filter((goal) => goal.status));
+        } else if (selection === "incompleted") {
+          setGoals(response.data.filter((goal) => !goal.status));
+        }
       } catch (error) {
         console.log("error in fetching goals");
       }
@@ -28,7 +34,7 @@ const GoalsCard = () => {
 
   return (
     <div className="w-full h-full bg-black shadow-lg rounded-2xl bg-white p-6">
-      <h1 className="font-bold text-2xl mb-3">Goals</h1>
+      <h1 className="font-bold text-2xl mb-3">{title}</h1>
       <div className="border-b border-gray-300 mb-6"></div>
 
       <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-4">

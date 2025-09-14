@@ -36,7 +36,7 @@ const DashboardPage = () => {
         <TotalStudyTime />
         <div className="grid grid-cols-3 grid-rows-2 gap-4 h-full m-2">
           <CourseCards />
-          <GoalsCard />
+          <GoalsCard selection={"all"} title={"Goals"} />
           <ContributionChart />
           <FarmStats />
         </div>

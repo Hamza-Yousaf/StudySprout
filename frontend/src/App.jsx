@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import CoursesPage from "./pages/CoursesPage";
 import TimerPage from "./pages/TimerPage";
+import GoalsPage from "./pages/GoalsPage";
 import { useLocation } from "react-router";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/timer" element={<TimerPage />} />
+        <Route path="/goals" element={<GoalsPage />} />
       </Routes>
     </div>
   );
