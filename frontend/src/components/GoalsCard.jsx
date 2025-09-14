@@ -8,7 +8,8 @@ const GoalsCard = ({ selection, title }) => {
   const { user } = useAuthContext();
 
   useEffect(() => {
-    if (!user.id) {
+    if (!user?.id) {
+      //null or undefined (?)
       return;
     }
 
@@ -32,6 +33,35 @@ const GoalsCard = ({ selection, title }) => {
     fetchGoals();
   }, [user]);
 
+  const changeGoalStatus = async (goalId) => {
+    // Find the goal and toggle its status
+    const updatedGoals = goals.map((g) =>
+      g._id === goalId ? { ...g, status: !g.status } : g
+    );
+
+    setGoals(updatedGoals); // update state immediately for UI responsiveness
+
+    try {
+      const updatedGoal = updatedGoals.find((g) => g._id === goalId);
+
+      const res = await fetch(
+        `http://localhost:5000/api/goals/${updatedGoal._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedGoal),
+        }
+      );
+
+      const data = await res.json();
+      console.log("Updated goal:", data);
+    } catch (error) {
+      console.error("Error updating goal:", error);
+    }
+  };
+
   return (
     <div className="w-full h-full bg-black shadow-lg rounded-2xl bg-white p-6">
       <h1 className="font-bold text-2xl mb-3">{title}</h1>
@@ -51,6 +81,7 @@ const GoalsCard = ({ selection, title }) => {
           <div
             key={goal._id}
             className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition"
+            onClick={() => changeGoalStatus(goal._id)}
           >
             <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
               {goal.title}

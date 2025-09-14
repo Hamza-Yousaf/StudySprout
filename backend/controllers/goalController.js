@@ -36,3 +36,24 @@ export const getGoals = async (req, res) => {
       .json({ success: false, message: "Server error fetching goals" });
   }
 };
+
+export const updateGoal = async (req, res) => {
+  const { id } = req.params;
+  const goal = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ success: false, message: "Goal not found" });
+  }
+
+  try {
+    await Goal.findByIdAndUpdate(id, goal, { new: true });
+    res
+      .status(200)
+      .json({ success: true, message: "Goal successfully updated" });
+  } catch (error) {
+    console.error("Error in updating goal", error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "(Server Error) in updating a goal" });
+  }
+};
