@@ -3,10 +3,25 @@ import Sidebar from "../components/Sidebar";
 import GoalsCard from "../components/GoalsCard";
 import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const GoalsPage = () => {
   const { user } = useAuthContext();
   const [toggleGoals, setToggleGoals] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  var activePath;
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
+  if (!user) {
+    return null;
+  }
 
   const toggleStates = () => {
     setToggleGoals(!toggleGoals);
@@ -39,9 +54,11 @@ const GoalsPage = () => {
     } catch (error) {}
   };
 
+  activePath = location.pathname;
+
   return (
     <div className="flex h-screen">
-      <Sidebar />
+      <Sidebar activePath={activePath} username={user.username} />
       {!toggleGoals ? (
         <div className="w-full flex flex-col">
           <div className="m-auto py-4">

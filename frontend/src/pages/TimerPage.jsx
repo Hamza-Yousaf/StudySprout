@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useRef } from "react";
 
 const TimerPage = () => {
@@ -13,10 +14,12 @@ const TimerPage = () => {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
+  const navigate = useNavigate();
+  var activePath;
+
   useEffect(() => {
-    if (!user?.id) {
-      //null or undefined (?)
-      return;
+    if (!user) {
+      navigate("/login");
     }
 
     const fetchCourses = async () => {
@@ -31,7 +34,11 @@ const TimerPage = () => {
     };
 
     fetchCourses();
-  }, [user]);
+  }, [user, navigate]);
+
+  if (!user) {
+    return null;
+  }
 
   const startTimer = () => {
     if (!isRunning) {
@@ -90,9 +97,11 @@ const TimerPage = () => {
 
   console.log(selectedCourse);
 
+  activePath = location.pathname;
+
   return (
     <div className="bg-[var(--oliveLeaf)] flex">
-      <Sidebar />
+      <Sidebar activePath={activePath} username={user.username} />
       <div className="m-auto flex flex-col w-auto items-center">
         <h1 className="text-4xl font-bold mb-4 underline">Timer</h1>
 
