@@ -21,20 +21,27 @@ const data = [
 
 const ContributionChart = () => {
   return (
-    <div className="w-full h-full bg-black shadow-lg rounded-2xl bg-white p-6">
+    <div className="w-full h-full bg-black shadow-lg rounded-2xl bg-white p-6 col-start-2 row-start 2 col-span-2">
       <h1 className="font-bold text-2xl mb-3">Tracker</h1>
       <div className="border-b border-gray-300 mb-6"></div>
-      <ActivityCalendar
-        data={data}
-        theme={{
-          light: ["#4b3f72", "#6a5a91", "#927fbf", "#bfa2db", "#e0b0ff"],
-          dark: ["#2e294e", "#4a3f72", "#7f6ca8", "#b497d6", "#e0b0ff"],
-        }}
-      />
-      <h1 className="font-semibold mt-12 text-3xl">
-        You've studied across{" "}
-        <span className="text-[#e0b0ff] font-bold">{data.length - 2} days</span>
-      </h1>
+      <div className="flex justify-center">
+        <ActivityCalendar
+          data={data}
+          theme={{
+            light: ["#4b3f72", "#6a5a91", "#927fbf", "#bfa2db", "#e0b0ff"],
+            dark: ["#2e294e", "#4a3f72", "#7f6ca8", "#b497d6", "#e0b0ff"],
+          }}
+        />
+      </div>
+
+      <div className="flex justify-center">
+        <h1 className="font-semibold mt-12 text-3xl">
+          You've studied across{" "}
+          <span className="text-[#e0b0ff] font-bold">
+            {data.length - 2} days
+          </span>
+        </h1>
+      </div>
     </div>
   );
 };

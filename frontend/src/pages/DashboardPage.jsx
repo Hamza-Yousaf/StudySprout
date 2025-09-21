@@ -38,7 +38,7 @@ const DashboardPage = () => {
           <CourseCards />
           <GoalsCard selection={"all"} title={"Goals"} />
           <ContributionChart />
-          <FarmStats />
+          {/* <FarmStats /> */}
         </div>
       </div>
     </div>
