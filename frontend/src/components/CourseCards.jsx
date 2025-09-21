@@ -26,6 +26,26 @@ const CourseCards = () => {
     fetchCourses();
   }, [user]);
 
+  const getPriorityColor = (priority) => {
+    switch (priority) {
+      case "Low":
+        return "bg-yellow-400 text-yellow-900";
+      case "Medium":
+        return "bg-orange-400 text-orange-900";
+      case "High":
+        return "bg-red-500 text-white";
+      case "Urgent":
+        return "bg-red-800 text-white";
+      default:
+        return "bg-gray-300 text-black";
+    }
+  };
+
+  const cleanDeadline = (deadline) => {
+    if (!deadline) return "No Deadline";
+    return deadline.toString().slice(0, 10);
+  };
+
   return (
     <div className="w-full row-span-2 shadow-lg rounded-2xl bg-white p-6">
       <h1 className="font-bold text-2xl mb-3">Courses</h1>
@@ -35,7 +55,7 @@ const CourseCards = () => {
         <h2 className="font-semibold text-lg text-[var(--powerBlue)]">
           Course
         </h2>
-        <h2 className="font-semibold text-lg text-black]">Priority</h2>
+        <h2 className="font-semibold text-lg text-black]">Exam</h2>
         <h2 className="font-semibold text-lg text-[var(--backgroundGreen)]">
           Hours Studied
         </h2>
@@ -49,11 +69,15 @@ const CourseCards = () => {
             key={course._id}
             className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition"
           >
-            <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)] w-[100px]">
+            <span
+              className={`bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold ${getPriorityColor(
+                course.priority
+              )} w-[100px]`}
+            >
               {course.title}
             </span>
-            <span className="bg-black py-1 px-3 rounded-xl font-semibold text-white w-[80px]">
-              {course.priority}
+            <span className="text-[10px] bg-black py-1 px-3 rounded-xl font-semibold text-white w-[80px]">
+              {cleanDeadline(course.deadline)}
             </span>
             <span className="font-semibold text-[var(--backgroundGreen)] w-[100px]">
               {Math.floor(course.hoursStudied * 100) / 100 || 0}

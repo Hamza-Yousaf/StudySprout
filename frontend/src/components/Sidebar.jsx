@@ -8,7 +8,7 @@ const Sidebar = ({ activePath, username }) => {
   const navItems = [
     { name: "Dashboard", path: "/dashboard" },
     { name: "Courses", path: "/courses" },
-    { name: "Farm", path: "/farm" },
+    // { name: "Farm", path: "/farm" },
     { name: "Timer", path: "/timer" },
     { name: "Goals", path: "/goals" },
   ];
