@@ -4,6 +4,12 @@ import Course from "../models/courseModel.js";
 export const createCourse = async (req, res) => {
   const course = req.body;
 
+  if (!course.title || !course.deadline || !course.priority) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Please fill in all fields" });
+  }
+
   const newCourse = new Course(course);
 
   try {

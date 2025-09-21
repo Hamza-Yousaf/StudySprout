@@ -25,6 +25,10 @@ const AddCourse = ({ hidden }) => {
 
       if (res.ok) {
         toast("Course Created!");
+      } else if (res.status === 400) {
+        toast("Please fill in all fields");
+      } else {
+        toast("Error, please try again");
       }
     } catch (error) {}
   };
