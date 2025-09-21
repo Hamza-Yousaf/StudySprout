@@ -1,0 +1,256 @@
+[
+  {
+    "id": 1,
+    "quote": "Success is the sum of small efforts, repeated day in and day out.",
+    "author": "Robert Collier"
+  },
+  {
+    "id": 2,
+    "quote": "Don’t watch the clock; do what it does. Keep going.",
+    "author": "Sam Levenson"
+  },
+  {
+    "id": 3,
+    "quote": "Dreams don’t work unless you do.",
+    "author": "John C. Maxwell"
+  },
+  {
+    "id": 4,
+    "quote": "Hard work beats talent when talent doesn’t work hard.",
+    "author": "Tim Notke"
+  },
+  {
+    "id": 5,
+    "quote": "Push yourself, because no one else is going to do it for you.",
+    "author": ""
+  },
+  {
+    "id": 6,
+    "quote": "Discipline is the bridge between goals and accomplishment.",
+    "author": "Jim Rohn"
+  },
+  {
+    "id": 7,
+    "quote": "Great things never come from comfort zones.",
+    "author": ""
+  },
+  {
+    "id": 8,
+    "quote": "The harder you work for something, the greater you’ll feel when you achieve it.",
+    "author": ""
+  },
+  {
+    "id": 9,
+    "quote": "Don’t stop when you’re tired. Stop when you’re done.",
+    "author": ""
+  },
+  {
+    "id": 10,
+    "quote": "Work hard in silence, let your success be your noise.",
+    "author": "Frank Ocean"
+  },
+
+  {
+    "id": 11,
+    "quote": "Fall seven times and stand up eight.",
+    "author": "Japanese Proverb"
+  },
+  {
+    "id": 12,
+    "quote": "It always seems impossible until it’s done.",
+    "author": "Nelson Mandela"
+  },
+  {
+    "id": 13,
+    "quote": "Perseverance is not a long race; it is many short races one after the other.",
+    "author": "Walter Elliot"
+  },
+  {
+    "id": 14,
+    "quote": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "author": "Winston Churchill"
+  },
+  {
+    "id": 15,
+    "quote": "A river cuts through rock not because of its power, but because of its persistence.",
+    "author": ""
+  },
+  {
+    "id": 16,
+    "quote": "Little by little, one travels far.",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "id": 17,
+    "quote": "Failure is simply the opportunity to begin again, this time more intelligently.",
+    "author": "Henry Ford"
+  },
+  {
+    "id": 18,
+    "quote": "Strength grows in the moments when you think you can’t go on but you keep going anyway.",
+    "author": ""
+  },
+  {
+    "id": 19,
+    "quote": "Winners are not afraid of losing. But losers are.",
+    "author": "Robert Kiyosaki"
+  },
+  {
+    "id": 20,
+    "quote": "The secret of our success is that we never, never give up.",
+    "author": "Wilma Mankiller"
+  },
+
+  {
+    "id": 21,
+    "quote": "Focus on being productive instead of busy.",
+    "author": "Tim Ferriss"
+  },
+  {
+    "id": 22,
+    "quote": "The successful warrior is the average man, with laser-like focus.",
+    "author": "Bruce Lee"
+  },
+  {
+    "id": 23,
+    "quote": "Starve your distractions, feed your focus.",
+    "author": ""
+  },
+  {
+    "id": 24,
+    "quote": "Concentration is the secret of strength.",
+    "author": "Ralph Waldo Emerson"
+  },
+  {
+    "id": 25,
+    "quote": "Clarity comes from action, not thought.",
+    "author": ""
+  },
+  {
+    "id": 26,
+    "quote": "Rule your mind or it will rule you.",
+    "author": "Horace"
+  },
+  {
+    "id": 27,
+    "quote": "Lost time is never found again.",
+    "author": "Benjamin Franklin"
+  },
+  {
+    "id": 28,
+    "quote": "Don’t trade what you want most for what you want now.",
+    "author": ""
+  },
+  {
+    "id": 29,
+    "quote": "Discipline is choosing between what you want now and what you want most.",
+    "author": "Abraham Lincoln"
+  },
+  {
+    "id": 30,
+    "quote": "Success demands singleness of purpose.",
+    "author": "Vince Lombardi"
+  },
+
+  {
+    "id": 31,
+    "quote": "An investment in knowledge pays the best interest.",
+    "author": "Benjamin Franklin"
+  },
+  {
+    "id": 32,
+    "quote": "The beautiful thing about learning is nobody can take it away from you.",
+    "author": "B.B. King"
+  },
+  {
+    "id": 33,
+    "quote": "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
+    "author": "Malcolm X"
+  },
+  {
+    "id": 34,
+    "quote": "The expert in anything was once a beginner.",
+    "author": ""
+  },
+  {
+    "id": 35,
+    "quote": "Learning never exhausts the mind.",
+    "author": "Leonardo da Vinci"
+  },
+  {
+    "id": 36,
+    "quote": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "id": 37,
+    "quote": "Mistakes are proof that you are trying.",
+    "author": ""
+  },
+  {
+    "id": 38,
+    "quote": "The more that you read, the more things you will know.",
+    "author": "Dr. Seuss"
+  },
+  {
+    "id": 39,
+    "quote": "Curiosity is the wick in the candle of learning.",
+    "author": "William Arthur Ward"
+  },
+  {
+    "id": 40,
+    "quote": "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.",
+    "author": "Brian Herbert"
+  },
+
+  {
+    "id": 41,
+    "quote": "Believe you can and you’re halfway there.",
+    "author": "Theodore Roosevelt"
+  },
+  {
+    "id": 42,
+    "quote": "Your limitation—it’s only your imagination.",
+    "author": ""
+  },
+  {
+    "id": 43,
+    "quote": "Act as if what you do makes a difference. It does.",
+    "author": "William James"
+  },
+  {
+    "id": 44,
+    "quote": "Confidence comes not from always being right but from not fearing to be wrong.",
+    "author": "Peter T. McIntyre"
+  },
+  {
+    "id": 45,
+    "quote": "You are never too old to set another goal or to dream a new dream.",
+    "author": "C.S. Lewis"
+  },
+  {
+    "id": 46,
+    "quote": "Don’t let what you cannot do interfere with what you can do.",
+    "author": "John Wooden"
+  },
+  {
+    "id": 47,
+    "quote": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+    "author": "Ralph Waldo Emerson"
+  },
+  {
+    "id": 48,
+    "quote": "Whether you think you can or you think you can’t, you’re right.",
+    "author": "Henry Ford"
+  },
+  {
+    "id": 49,
+    "quote": "Everything you’ve ever wanted is on the other side of fear.",
+    "author": "George Addair"
+  },
+  {
+    "id": 50,
+    "quote": "No one can make you feel inferior without your consent.",
+    "author": "Eleanor Roosevelt"
+  }
+]

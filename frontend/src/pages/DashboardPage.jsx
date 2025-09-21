@@ -7,6 +7,7 @@ import TotalStudyTime from "../components/TotalStudyTime";
 import CourseCards from "../components/CourseCards";
 import GoalsCard from "../components/GoalsCard";
 import ContributionChart from "../components/ContributionChart";
+import QuoteCard from "../components/QuoteCard";
 import FarmStats from "../components/FarmStats";
 
 const DashboardPage = () => {
@@ -37,8 +38,8 @@ const DashboardPage = () => {
         <div className="grid grid-cols-3 grid-rows-2 gap-4 h-full m-2">
           <CourseCards />
           <GoalsCard selection={"all"} title={"Goals"} />
+          <QuoteCard />
           <ContributionChart />
-          {/* <FarmStats /> */}
         </div>
       </div>
     </div>
