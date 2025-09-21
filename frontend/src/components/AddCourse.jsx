@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
 
 const AddCourse = ({ hidden }) => {
   const { user } = useAuthContext();
@@ -22,8 +23,9 @@ const AddCourse = ({ hidden }) => {
         body: JSON.stringify(jdata),
       });
 
-      const data = await res.json();
-      console.log(data);
+      if (res.ok) {
+        toast("Course Created!");
+      }
     } catch (error) {}
   };
 
