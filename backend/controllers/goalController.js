@@ -57,3 +57,23 @@ export const updateGoal = async (req, res) => {
       .json({ success: false, message: "(Server Error) in updating a goal" });
   }
 };
+
+export const deleteGoal = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ success: false, message: "Goal not found" });
+  }
+
+  try {
+    await Goal.findByIdAndDelete(id);
+    res
+      .status(200)
+      .json({ success: true, message: "Goal successfully deleted" });
+  } catch (error) {
+    console.error("Error in deleting goal", error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "(Server Error) in deleting a goal" });
+  }
+};

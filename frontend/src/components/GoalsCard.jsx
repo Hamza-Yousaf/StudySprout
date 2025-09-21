@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
 
 const GoalsCard = ({ selection, title }) => {
   const [goals, setGoals] = useState([]);
@@ -31,15 +32,14 @@ const GoalsCard = ({ selection, title }) => {
     };
 
     fetchGoals();
-  }, [user]);
+  }, [user, goals]);
 
   const changeGoalStatus = async (goalId) => {
-    // Find the goal and toggle its status
     const updatedGoals = goals.map((g) =>
       g._id === goalId ? { ...g, status: !g.status } : g
     );
 
-    setGoals(updatedGoals); // update state immediately for UI responsiveness
+    setGoals(updatedGoals);
 
     try {
       const updatedGoal = updatedGoals.find((g) => g._id === goalId);
@@ -56,9 +56,26 @@ const GoalsCard = ({ selection, title }) => {
       );
 
       const data = await res.json();
-      console.log("Updated goal:", data);
+      //console.log("Updated goal:", data);
     } catch (error) {
       console.error("Error updating goal:", error);
+    }
+  };
+
+  const deleteGoal = async (goalID) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/goals/${goalID}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      setGoals((prev) => prev.filter((goal) => goal._id !== goalID));
+      toast("Goal deleted");
+    } catch (error) {
+      console.log("error in deleting goal", error);
     }
   };
 
@@ -82,6 +99,7 @@ const GoalsCard = ({ selection, title }) => {
             key={goal._id}
             className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition"
             onClick={() => changeGoalStatus(goal._id)}
+            onDoubleClick={() => deleteGoal(goal._id)}
           >
             <span className="bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold text-[var(--powerBlue)]">
               {goal.title}

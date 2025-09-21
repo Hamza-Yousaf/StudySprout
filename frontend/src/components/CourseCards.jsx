@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "react-toastify";
 
 const CourseCards = () => {
   const [courses, setCourses] = useState([]);
@@ -46,6 +47,23 @@ const CourseCards = () => {
     return deadline.toString().slice(0, 10);
   };
 
+  const deleteCourse = async (courseID) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/courses/${courseID}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      setCourses((prev) => prev.filter((course) => course._id !== courseID));
+      toast("Course deleted");
+    } catch (error) {
+      console.log("error in deleting courses");
+    }
+  };
+
   return (
     <div className="w-full row-span-2 shadow-lg rounded-2xl bg-white p-6">
       <h1 className="font-bold text-2xl mb-3">Courses</h1>
@@ -68,6 +86,7 @@ const CourseCards = () => {
           <div
             key={course._id}
             className="flex justify-between items-center py-2 px-2 rounded-lg hover:bg-gray-50 transition"
+            onDoubleClick={() => deleteCourse(course._id)}
           >
             <span
               className={`bg-[var(--skyBlue)] py-1 px-3 rounded-xl font-semibold ${getPriorityColor(

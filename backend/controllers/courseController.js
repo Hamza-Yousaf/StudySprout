@@ -67,3 +67,23 @@ export const updateCourse = async (req, res) => {
       .json({ success: false, message: "(Server Error) in updating a course" });
   }
 };
+
+export const deleteCourse = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ success: false, message: "Course not found" });
+  }
+
+  try {
+    await Course.findByIdAndDelete(id);
+    res
+      .status(200)
+      .json({ success: true, message: "Course successfully deleted" });
+  } catch (error) {
+    console.error("Error in deleting course", error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "(Server Error) in deleting a course" });
+  }
+};

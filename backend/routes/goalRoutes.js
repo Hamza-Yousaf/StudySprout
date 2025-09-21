@@ -3,6 +3,7 @@ import {
   createGoal,
   getGoals,
   updateGoal,
+  deleteGoal,
 } from "../controllers/goalController.js";
 
 const router = express.Router();
@@ -12,5 +13,7 @@ router.post("/", createGoal);
 router.get("/:id", getGoals);
 
 router.put("/:id", updateGoal);
+
+router.delete("/:id", deleteGoal);
 
 export default router;
