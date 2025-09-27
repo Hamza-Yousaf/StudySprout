@@ -84,9 +84,9 @@ const RegisterPage = () => {
         </form>
 
         <p className="justify-self-end text-[var(--lightText)] text-sm">
-          Join StudySprout, level up and build your{" "}
-          <span className="font-bold">custom</span> farm with XP gained by
-          staying productive! Already have an account?{" "}
+          Join StudySprout, be encouraged by login tracking, easy course
+          creation and navigation, inspiring quotes all to stay productive!
+          Already have an account?{" "}
           <a href="/login" className="font-bold underline">
             Login!
           </a>
