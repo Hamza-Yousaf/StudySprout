@@ -3,56 +3,71 @@ import { ActivityCalendar } from "react-activity-calendar";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, useState } from "react";
 
-let data = [
-  { date: "2025-01-01", count: 0, level: 0 },
-  { date: "2025-12-31", count: 0, level: 0 },
-];
-
 const ContributionChart = () => {
   const { user } = useAuthContext();
-  const [courses, setCourses] = useState([]);
+  const [logins, setLogins] = useState([]);
 
   useEffect(() => {
     if (!user.id) {
       return;
     }
 
-    const fetchCourses = async () => {
+    const fetchLogins = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/courses/${user.id}`);
+        const res = await fetch(
+          `http://localhost:5000/api/users/${user.id}/logins`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
         const response = await res.json();
-        setCourses(response.data);
+        if (response.success) {
+          setLogins(response.data);
+        }
       } catch (error) {
-        console.log("error in fetching courses");
+        console.log("error in fetching logins", error);
       }
     };
 
-    fetchCourses();
+    fetchLogins();
   }, [user]);
 
-  useEffect(() => {
-    // check if updatedAt is > todays date at 00:00
-    const today = new Date();
-    const todayFormatted = today.toISOString().slice(0, 10);
+  const data = [
+    { date: "2025-01-01", count: 0, level: 0 },
+    { date: "2025-12-31", count: 0, level: 0 },
+    ...logins.map((login) => ({
+      date: login.loginDate,
+      count: login.loginCount,
+      level: Math.min(login.loginCount, 4),
+    })),
+  ];
 
-    data = [
-      { date: "2025-01-01", count: 0, level: 0 },
-      { date: "2025-12-31", count: 0, level: 0 },
-    ];
+  // useEffect(() => {
+  //   // check if updatedAt is > todays date at 00:00
+  //   const today = new Date();
+  //   const todayFormatted = today.toISOString().slice(0, 10);
 
-    courses.forEach((course) => {
-      const courseDate = new Date(course.updatedAt);
-      const formattedDate = courseDate.toISOString().slice(0, 10);
-      if (formattedDate === todayFormatted && courseDate.getTime() > 0) {
-        console.log("in if");
-        data.push({
-          date: formattedDate,
-          count: 1,
-          level: 1,
-        });
-      }
-    });
-  }, [courses]);
+  //   data = [
+  //     { date: "2025-01-01", count: 0, level: 0 },
+  //     { date: "2025-12-31", count: 0, level: 0 },
+  //   ];
+
+  //   courses.forEach((course) => {
+  //     const courseDate = new Date(course.updatedAt);
+  //     const formattedDate = courseDate.toISOString().slice(0, 10);
+  //     if (formattedDate === todayFormatted && courseDate.getTime() > 0) {
+  //       console.log("in if");
+  //       data.push({
+  //         date: formattedDate,
+  //         count: 1,
+  //         level: 1,
+  //       });
+  //     }
+  //   });
+  // }, [courses]);
 
   return (
     <div className="w-full h-full bg-black shadow-lg rounded-2xl bg-white p-6 col-start-2 row-start 2 col-span-2">
@@ -68,11 +83,24 @@ const ContributionChart = () => {
         />
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-col items-center">
         <h1 className="font-semibold mt-12 text-3xl">
-          You've studied across{" "}
+          You've logged in across{" "}
           <span className="text-[#e0b0ff] font-bold">
             {data.length - 2} days
+          </span>
+        </h1>
+
+        <h1 className="font-semibold mt-6 text-3xl">
+          Today's logins:{" "}
+          <span className="text-[#e0b0ff] font-bold">
+            {(() => {
+              const today = new Date().toISOString().slice(0, 10);
+              const todayLogin = logins.find(
+                (login) => login.loginDate === today
+              );
+              return todayLogin ? todayLogin.loginCount : 0;
+            })()}
           </span>
         </h1>
       </div>

@@ -3,6 +3,8 @@ import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import UserLogin from "../models/userLoginModel.js";
+import dayjs from "dayjs";
 
 dotenv.config();
 
@@ -71,11 +73,35 @@ export const loginUser = async (req, res) => {
 
     const token = createToken(user._id);
 
+    const today = dayjs().format("YYYY-MM-DD");
+    await UserLogin.updateOne(
+      { userId: user._id, loginDate: today },
+      { $inc: { loginCount: 1 } },
+      { upsert: true }
+    );
+
     res.status(200).json({ user: user, token: token });
   } catch (error) {
     res
       .status(500)
       .json({ success: false, message: "Server error when trying to login" });
+  }
+};
+
+export const getUserLogins = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const logins = await UserLogin.find({ userId: id })
+      .sort({ loginDate: 1 })
+      .lean();
+
+    res.status(200).json({ success: true, data: logins });
+  } catch (error) {
+    console.error("Error in fetching logins", error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "(Server Error) in fetching logins" });
   }
 };
 

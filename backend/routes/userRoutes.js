@@ -5,6 +5,7 @@ import {
   updateUser,
   getUser,
   loginUser,
+  getUserLogins,
 } from "../controllers/userController.js";
 
 import requireAuth from "../middleware/requireAuth.js";
@@ -16,6 +17,8 @@ router.post("/", createUser);
 router.post("/login", loginUser);
 
 router.use(requireAuth);
+
+router.get("/:id/logins", getUserLogins);
 
 router.delete("/:id", deleteUser);
 
