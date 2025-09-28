@@ -39,11 +39,22 @@ const ContributionChart = () => {
     { date: "2025-01-01", count: 0, level: 0 },
     { date: "2025-12-31", count: 0, level: 0 },
     ...logins.map((login) => ({
-      date: login.loginDate,
+      date: login.loginDate, // already YYYY-MM-DD string
       count: login.loginCount,
       level: Math.min(login.loginCount, 4),
     })),
   ];
+
+  const today = new Date();
+  const todayStr =
+    today.getFullYear() +
+    "-" +
+    String(today.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(today.getDate()).padStart(2, "0");
+
+  const todayLogin = logins.find((login) => login.loginDate === todayStr);
+  const todayCount = todayLogin ? todayLogin.loginCount : 0;
 
   // useEffect(() => {
   //   // check if updatedAt is > todays date at 00:00
@@ -93,15 +104,7 @@ const ContributionChart = () => {
 
         <h1 className="font-semibold mt-6 text-3xl">
           Today's logins:{" "}
-          <span className="text-[#e0b0ff] font-bold">
-            {(() => {
-              const today = new Date().toISOString().slice(0, 10);
-              const todayLogin = logins.find(
-                (login) => login.loginDate === today
-              );
-              return todayLogin ? todayLogin.loginCount : 0;
-            })()}
-          </span>
+          <span className="text-[#e0b0ff] font-bold">{todayCount}</span>
         </h1>
       </div>
     </div>
